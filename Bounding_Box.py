@@ -34,13 +34,15 @@ print('vux',len(contours))
 # Tìm ra diện tích của toàn bộ các contours
 area_cnt = [cv2.contourArea(cnt) for cnt in contours]
 
-# Vẽ bounding box cho contours có diện tích lớn thứ 2
+# Vẽ bounding box cho tất cả các contour
 for cnt in contours:
     print(len(cnt))
+    #các đinh tọa độ x,y là điểm góc bắt đầu của hình chữ nhật, w,h là chiều dài chiều rộng hình chữ nhật
     x,y,w,h = cv2.boundingRect(cnt)
+    #vẽ hình chữ nhật
     img = cv2.rectangle(img1,(x,y),(x+w,y+h),(0,255,0),2)
     cv2.imshow('Bounding box',img)
-    #tim hinh chu nhat nho nhat bao quanh contour
+    #tim hình chữ nhật có diện tích nhỏ nhất bao quanh contour
     rect = cv2.minAreaRect(cnt)
     box = cv2.boxPoints(rect)
     box = np.int0(box)
